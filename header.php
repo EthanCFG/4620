@@ -14,10 +14,6 @@
         <a href="index.php"><img src="img/logo-white.png" alt="MeTube"></a>
         <ul>
           <li><a href="index.php">Home</a></li>
-<<<<<<< HEAD
-          <li><a href="filemanager.php">Upload</a></li>
-=======
->>>>>>> 61a43bed009eb87b23d523d5f5282ce75ebca0f5
           <?php
             if (isset($_SESSION["useruid"])) {
               echo "<li><a href='User/profile.php'>Profile Page</a></li>";

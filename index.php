@@ -8,11 +8,7 @@
     <title>MeTube</title>
 </head>
 <body>
-    <h1>index page for MeTube</h1>
-
-    <br>
-    Hello User
-
+    <h1>Welcome To MeTube!</h1>
 
 </body>
 
