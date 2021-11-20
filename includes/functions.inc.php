@@ -139,10 +139,10 @@
     }
 
     function loginUser($conn, $username, $pwd) {
-        $uidExists = userExists($conn, $username, $email);
+        $uidExists = userExistsLogin($conn, $username);
     
-        if ($userExists === false) {
-            header("location: ../login.php?error=wrongid");
+        if ($uidExists === false) {
+            header("location: ../User/login.php?error=wronguid");
             exit();
         }
     
@@ -150,7 +150,7 @@
         $checkPwd = password_verify($pwd, $pwdHashed);
     
         if ($checkPwd === false) {
-            header("location: ../login.php?error=wrongpass");
+            header("location: ../User/login.php?error=wrongpass");
             exit();
         }
         else if ($checkPwd === true) {
@@ -164,12 +164,12 @@
 
     function userExistsLogin($conn, $username)
     {
-        $sql = "SELECT * FROM users WHERE usersName = ?;";
+        $sql = "SELECT usersUid FROM users WHERE usersUid = ?;";
         $state = mysqli_stmt_init($conn);
 
         if(!mySqli_stmt_prepare($state, $sql))
         {
-            header("location: ../signup.php?error=statefailed1");
+            header("location: ../User/login.php?error=statefailed1");
             exit();
         }
 
@@ -178,7 +178,7 @@
 
         $resultsData = mysqli_stmt_get_result($state);
 
-        if($r = mysqli_fetch_assoc($resultsData))
+        if(mysqli_fetch_assoc($resultsData) === $username)
         {
             $result = true;
             return $result;

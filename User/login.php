@@ -36,12 +36,13 @@ if (isset($_GET["error"])) {
     if ($_GET["error"] == "emptyinput") {
       echo "<p>Fill in all fields!</p>";
     }
-    else if($_GET["error"] == "noexistuser") {
-      echo "<p>Username does not exist! Try again.</p>";
+    else if($_GET["error"] == "wonguid") {
+      echo "<p>Username is Incorrect! Please Try Again.</p>";
     }
-    else if($_GET["error"] == "wrongpass") {
-      echo "<p>Wrong password! Try again.</p>";
+    else if($_GET["error"] == "wongpass") {
+      echo "<p>Password is Incorrect! Please Try Again.</p>";
     }
+    
   }
   ?>
 
