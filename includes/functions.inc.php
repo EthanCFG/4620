@@ -119,9 +119,7 @@
 
     function uploadMedia($conn, $username, $title, $description, $keywords, $category, $path)
     {
-        $sql = "SELECT usersId FROM users WHERE usersUid= ?;";
-
-        $sql .= "INSERT INTO uploadData (userId, title, descrip, keywords, catagory, filePath) VALUES (?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO uploadData (userId, title, descrip, keywords, catagory, filePath) VALUES (?, ?, ?, ?, ?, ?);";
 
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
