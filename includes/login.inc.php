@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
 		exit();
   }
 
-  userExistsLogin($conn, $username);
+  
 
 
   // If we get to here, it means there are no user errors

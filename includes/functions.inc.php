@@ -119,15 +119,16 @@
 
     function uploadMedia($conn, $username, $title, $description, $keywords, $category, $path)
     {
-        $sql = "INSERT INTO uploadData (userId, title, descrip, keywords, catagory, filePath) VALUES (?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO uploadData (userName, title, descrip, keywords, category, filePath) VALUES (?, ?, ?, ?, ?, ?);";
 
+        $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql))
         {
             header("location: ../filemanager.php?error=stmtfailed");
             exit();
         }
         echo "<p>post upload</p>";
-        mysqli_stmt_bind_param($stmt, "ssssss", $userid, $title, $description, $keywords, $category, $path);
+        mysqli_stmt_bind_param($stmt, "ssssss", $username, $title, $description, $keywords, $category, $path);
         echo "<p>post upload</p>";
         mysqli_stmt_execute($stmt);
         echo "<p>post upload</p>";
@@ -164,7 +165,7 @@
 
     function userExistsLogin($conn, $username)
     {
-        $sql = "SELECT usersUid FROM users WHERE usersUid = ?;";
+        $sql = "SELECT * FROM users WHERE usersUid = ?;";
         $state = mysqli_stmt_init($conn);
 
         if(!mySqli_stmt_prepare($state, $sql))
@@ -178,9 +179,9 @@
 
         $resultsData = mysqli_stmt_get_result($state);
 
-        if(mysqli_fetch_assoc($resultsData) === $username)
+        if($r = mysqli_fetch_assoc($resultsData))
         {
-            $result = true;
+            $result = $r;
             return $result;
         }
         else
