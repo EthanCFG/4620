@@ -192,6 +192,36 @@
         mysqli_stmt_close($state);
     }
 
+    function getVideo($conn, $username)
+    {
+        $sql = "SELECT * FROM uploadData;";
+        $state = mysqli_stmt_init($conn);
+
+        if(!mysqli_stmt_prepare($state, $sql))
+        {
+            header("location: ../videoPlay.php?error=statefailed");
+            exit();
+        }
+
+        mysqli_stmt_bind_param($state, "s", $username);
+        mysqli_stmt_execute($state);
+
+        $resultsData = mysqli_stmt_get_result($state);
+
+        if($r = mysqli_fetch_assoc($resultsData))
+        {
+            $result = $r;
+            return $result;
+        }
+        else
+        {
+            $result = false;
+            return $result;
+        }
+        mysqli_stmt_close($state);
+
+    }
+
     /*
             $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $username))
