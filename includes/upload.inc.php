@@ -30,7 +30,6 @@ if(isset($_POST['submit']))
             if($fileSize > 1)
             {
                 $fileNameNew = uniqid('', true).".".$fileActualExt;
-                echo "<p>Post unique</p>";
                 $fileDestination = '../uploads/'.$fileNameNew;
                 echo "<p>post file dest</p>";
                 move_uploaded_file($fileTmpName, $fileDestination);

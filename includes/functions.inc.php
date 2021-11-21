@@ -127,13 +127,9 @@
             header("location: ../filemanager.php?error=stmtfailed");
             exit();
         }
-        echo "<p>post upload</p>";
         mysqli_stmt_bind_param($stmt, "ssssss", $username, $title, $description, $keywords, $category, $path);
-        echo "<p>post upload</p>";
         mysqli_stmt_execute($stmt);
-        echo "<p>post upload</p>";
         mysqli_stmt_close($stmt);
-        echo "<p>post upload</p>";
         mysqli_close($conn);
         header("location: ../index.php?success");
         exit();
