@@ -34,7 +34,7 @@ if(isset($_POST['submit']))
                 echo "<p>post file dest</p>";
                 move_uploaded_file($fileTmpName, $fileDestination);
                 echo "<p>post move</p>";
-                uploadMedia($conn, $username, $title, $keywords, $description, $catagory, $fileDestination);
+                uploadMedia($conn, $username, $title, $keywords, $description, $catagory, $fileNameNew);
                 echo "<p>post upload</p>";
             }
             else

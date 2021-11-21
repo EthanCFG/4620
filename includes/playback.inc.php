@@ -10,12 +10,12 @@
     $description = $_POST["descrip"];
     $path = $_POST["filePath"];*/
 
-    $info = getVideo($conn, $username);
+    $path = getVideo($conn);
 
-    $username = $info["userId"];
+    /*$username = $info["userId"];
     $title = $info["title"];
     $keywords = $info["keywords"];
     $catagory = $info["catagory"];
     $description = $info["descrip"];
-    $path = $info["filePath"];
+    $path = $info["filePath"];*/
 

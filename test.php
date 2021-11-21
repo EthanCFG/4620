@@ -14,9 +14,9 @@
 <div class="media-container">
     <?php
         $sql = "SELECT * FROM uploadData";
-        $sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?";
+        /*$sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?";*/
         $result = mysqli_query($conn, $sql);
-        $queryResult = mysqli_num_rows($result);
+        $queryResults = mysqli_num_rows($result);
 
         if ($queryResults > 0){
             while ($row = mysqli_fetch_assoc($result)){
