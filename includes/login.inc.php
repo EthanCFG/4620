@@ -6,6 +6,8 @@ if (isset($_POST["submit"])) {
   $username = $_POST["uid"];
   $pwd = $_POST["pwd"];
 
+  $_SESSION["username"] = $username;
+
   // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
   // These functions can be found in functions.inc.php
 

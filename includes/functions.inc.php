@@ -1,4 +1,7 @@
 <?php
+
+    include_once "../session.php";
+
     function inputEmpty($name, $email, $username, $pwd, $pwdRepeat)
     {
         $result;
