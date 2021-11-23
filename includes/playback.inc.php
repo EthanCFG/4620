@@ -6,13 +6,4 @@
     
     $path = getVideo($conn);
 
-    if(isset($_POST["submit"]))
-    {
-
-    $comment = $_POST["comment"];
-    $user = $_SESSION["username"];
-    header("location: ../videoPlay.php?commentSuccess");
-
-    }
-
         

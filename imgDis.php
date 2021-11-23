@@ -5,9 +5,7 @@
 ?>
 
 <section class="video-player">
-    <video width="320" height="240" controls>
-    <source src="uploads/<?php echo "$path" ?>" type="video/mp4">
-    </video>
+    <img src="uploads/<?php echo "$path" ?>" alt=<?php echo "$title" ?> width="320" height="240">
     <p><a href="uploads/<?php echo "$path" ?>">Download</a></p>
     <?php
       if(isset($_SESSION["useruid"])) {

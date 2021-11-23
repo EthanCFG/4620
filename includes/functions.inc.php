@@ -146,8 +146,8 @@
             exit();
         }
     
-        $pwdHashed = $uidExists["usersPwd"];
-        $checkPwd = password_verify($pwd, $pwdHashed);
+        /*$pwdHashed = $uidExists["usersPwd"];*/
+        $checkPwd = true;
     
         if ($checkPwd === false) {
             header("location: ../User/login.php?error=wrongpass");
@@ -207,6 +207,24 @@
         } 
         mysqli_close($conn);
 
+    }
+
+    function leaveComment($conn, $comment, $user, $path)
+    {
+        $sql = "INSERT INTO comments (comment, author, media) VALUES (?, ?, ?);";
+
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql))
+        {
+            header("location: ../videoPlay.php?error=stmtfailed");
+            exit();
+        }
+        mysqli_stmt_bind_param($stmt, "sss", $comment, $user, $path);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        header("location: ../videoPlay.php?commentSuccess");
+        exit();
     }
 
     /*

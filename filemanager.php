@@ -28,8 +28,15 @@
             <input type="text" name="keywords" placeholder="Enter keywords so your media can be easily found..."><BR></BR>
             <label for="description">Description</label>
             <input type="text" name="description" placeholder="Describe your media for viewers..."><BR></BR>
-            <label for="catagory">Catagory:</label>
-            <input type="text" name="catagory" placeholder="Games, Outdoors, Makeup, IRL..."><BR></BR>
+            <label for="catagory">Choose One Catagory</label>
+            <select name="catagories">
+            <option value="">Select...</option>
+            <option value="entertainment">Enertainment</option>
+            <option value="technology">Technology</option>
+            <option value="outdoors">Outdoors</option>
+            <option value="beauty">Beauty</option>
+            <option vaule="other">Other</option>
+            </select>
             </p>
             <button type="submit" name="submit">Upload</button>
         </form>
