@@ -1,6 +1,6 @@
 
 <?php
-    include_once '../header.php';
+    include_once "header.php";
 ?>
 <a href="editprofile.php"><button>edit profile</button></a>         
 <BR></BR>

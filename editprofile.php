@@ -1,5 +1,5 @@
 <?php
-    include_once '../header.php';
+    include_once 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,17 +10,15 @@
         .center {
           text-align: center;
         }
-        .vertical{
-            margin-bottom: 200px;
-        }
 </style>
 </head>
 <body>
 <div class = "vertical"></div>
+<section>
 <h1 class = "center">Edit Profile Information</h1>
 
 <div class = "center">
-<form action="../includes/editprofile.inc.php" method="post">
+<form action="includes/editprofile.inc.php" method="post">
         <p>
         <h3>To change current username/email enter current username/email in current username/email box and then enter the new username/email in the following box with you corresponding password</h3>
         <h3> to change passwords you must enter your current username with your current password to change it to the new password<h3>
@@ -41,6 +39,7 @@
         <BR></BR>
 </form>
 </div>
+</section>
 
 <?php
 if (isset($_GET["error"])) {

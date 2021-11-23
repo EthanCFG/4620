@@ -11,11 +11,9 @@
         .center {
           text-align: center;
         }
-        .vertical{
-            margin-bottom: 200px;
-        }
     </style>
     <section>
+        <h1>Upload Media Page</h1>
         <form action="includes/upload.inc.php" method="POST" enctype="multipart/form-data">
             <p>
             <label for="upload">Media File:</label>
