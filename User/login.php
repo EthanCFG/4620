@@ -1,5 +1,5 @@
 <?php
-  include_once "userHeader.php";
+  include_once "../header.php";
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +36,10 @@ if (isset($_GET["error"])) {
     if ($_GET["error"] == "emptyinput") {
       echo "<p>Fill in all fields!</p>";
     }
-    else if($_GET["error"] == "wonguid") {
+    else if($_GET["error"] == "wronguid") {
       echo "<p>Username is Incorrect! Please Try Again.</p>";
     }
-    else if($_GET["error"] == "wongpass") {
+    else if($_GET["error"] == "wrongpass") {
       echo "<p>Password is Incorrect! Please Try Again.</p>";
     }
     

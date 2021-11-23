@@ -1,3 +1,7 @@
+<?php
+    include_once "header.php";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,10 +15,7 @@
             margin-bottom: 200px;
         }
     </style>
-    <body>
-        <div class = "vertical"></div>
-        <h1 class = "center">Media Upload Page</h1>    
-        <div class = "center">
+    <section>
         <form action="includes/upload.inc.php" method="POST" enctype="multipart/form-data">
             <p>
             <label for="upload">Media File:</label>
@@ -32,6 +33,4 @@
             </p>
             <button type="submit" name="submit">Upload</button>
         </form>
-        </div>
-    </body>
-</html>
+    </section>
