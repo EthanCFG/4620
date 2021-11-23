@@ -1,19 +1,14 @@
 <?php
     include_once 'header.php';
-    include_once 'includes/dbh.inc.php';
 ?>
 
-<form action="search.php" method="POST">
-    <input type="text" name="search" placeholder="Search">
-    <button type="submit" name="submit-search"></button>
-</form>
-
-<h1>Front page</h1>
-<h2>All videos:</h2>
+<h1>Media page</h1>
 
 <div class="media-container">
     <?php
-        $sql = "SELECT * FROM uploadData";
+        $id = mysqli_real_escape_string($conn, $_GET['id']);
+
+        $sql = "SELECT * FROM uploadData WHERE filepath='$id'";
         $result = mysqli_query($conn, $sql);
         $queryResults = mysqli_num_rows($result);
 
@@ -22,12 +17,15 @@
                 echo "<div class='media-box'>
                     <h3>".$row['title']."</h3>
                     <p>".$row['descrip']."</p>
-                    <p>".$row['category']."</p>
+                    <video width='320' height='240' controls>
+                        <source src='uploads/".$id."' type='video/mp4'>
+                    </video>
                     <p>".$row['userName']."</p>
-                </div>";
+                    </div>";
             }
         }
-    ?>
+        ?>
+
 
 </body>
 </html>
