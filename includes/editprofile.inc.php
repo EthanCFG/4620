@@ -2,25 +2,41 @@
 
 if(isset($_POST["submit"]))
 {
-    $name = $_POST["name"];
-    $bio = $_POST["bio"];
-    $birth = $_POST["bday"];
-    $gender = $_POST["gen"];
-    $path = $_POST["pathWay"];
+    $cur = $_POST["curUser"];
+    $new = $_POST["newUser"];
     $pass = $_POST["pass"];
+    $newPass = $_POST["newPwd"];
+    $newEmail = $_POST["newEmail"];
+    $curEmail = $_POST["curEmail"];
+
 
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if(loginUse($email) !== false)
+
+    if(changeUN($conn, $cur, $new, $pass) !== false)
     {
-        header("location: ../signup.php?error=invalidemail");
+        header("location: ../User/editprofile.php?error=sucUser");
         exit();
     }
 
+    if(changeEmail($conn, $cur, $newEmail, $curEmail, $pass) !== false)
+    {
+        header("location: ../User/editprofile.php?error=emailchange");
+        exit();
+    }
+
+    if(passChange($conn, $cur, $pass, $newPass) !== false)
+    {
+        header("location: ../User/editprofile.php?error=passSuccess3");   
+        exit();
+    }
+
+
+ 
     
 
-    
-
+    header("location: ../User/editprofile.php");
+    exit();
 }

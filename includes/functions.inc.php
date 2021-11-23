@@ -164,7 +164,7 @@
 
     function userExistsLogin($conn, $username)
     {
-        $sql = "SELECT usersUid FROM users WHERE usersUid = ?;";
+        $sql = "SELECT * FROM users WHERE usersUid = ?;";
         $state = mysqli_stmt_init($conn);
 
         if(!mySqli_stmt_prepare($state, $sql))
@@ -178,10 +178,9 @@
 
         $resultsData = mysqli_stmt_get_result($state);
 
-        if(mysqli_fetch_assoc($resultsData) === $username)
+        if($r = mysqli_fetch_assoc($resultsData))
         {
-            $result = true;
-            return $result;
+            return $r;
         }
         else
         {
@@ -191,27 +190,154 @@
         mysqli_stmt_close($state);
     }
 
-    /*
-            $result;
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $username))
+    function changeUN($conn, $cur, $new, $pass)
+    {
+        if((empty($cur) || empty($new)))
         {
-            $result = true;
+            //header("location: ../User/editprofile.php?error=users");
+            return false;
+            exit();
+        }
+        
+        $uidExists = userExistsLogin($conn, $cur);
+    
+        if ($uidExists == false) {
+            header("location: ../User/editprofile.php?error=usernoexists");
+            exit();
+        }
+        
+
+        $uidExists2 = userExistsLogin($conn, $new);
+    
+        if ($uidExists2 !== false) {
+            header("location: ../User/editprofile.php?error=userTaken1");
+            exit();
+        }
+
+        $sql = "UPDATE users SET usersUid ='$new' WHERE usersUid = '$cur'";
+        $pwdHashed = $uidExists["usersPwd"];
+        $checkPwd = password_verify($pass, $pwdHashed);
+
+        if ($checkPwd === false) {
+                header("location: ../User/editprofile.php?error=test3");
+                exit();
+        } 
+        else if($checkPwd === true){
+            if ($result = mysqli_query($conn, $sql)) {
+                echo "Record updated successfully";
+                exit();
+            }
+        }
+        mysqli_close($conn);
+    }
+
+    function emailExists($conn, $email)
+    {
+        $sql = "SELECT * FROM users WHERE usersEmail = ?;";
+        $state = mysqli_stmt_init($conn);
+
+        if(!mySqli_stmt_prepare($state, $sql))
+        {
+            header("location: ../User/signup.php?error=statefailed2");
+            exit();
+        }
+        
+        mysqli_stmt_bind_param($state, "s", $email);
+        mysqli_stmt_execute($state);
+
+        $resultsData = mysqli_stmt_get_result($state);
+
+        if($r = mysqli_fetch_assoc($resultsData))
+        {
+            return $r;
         }
         else
         {
             $result = false;
+            return $result;
         }
-        return $result;
-    function changeBio($conn, $bio)
-    {
-        $mysql = "SELECT * FROM "
+        mysqli_stmt_close($state);
     }
 
-    function changeGen($conn, $gender)
+    function changeEmail($conn, $cur, $newEmail, $curEmail, $pass)
     {
-        $mysql = "SELECT * FROM "
+        $uidExists = userExistsLogin($conn, $cur);
+        if((empty($curEmail) || empty($newEmail)))
+        {
+            //header("location: ../User/editprofile.php?error=emails");
+            return false;
+            exit();
+        }
+        else if ($uidExists === false) {
+            header("location: ../User/editprofile.php?error=usernotinEmail");
+            exit();
+        }
+        else if(emailInvalid($newEmail) || emailInvalid($curEmail))
+        {
+            header("location: ../User/editprofile.php?error=emailNoval");
+            exit();
+        }
+        else if(emailExists($conn, $curEmail) == false)
+        {
+            header("location: ../User/editprofile.php?error=emailnoexist");
+            exit();
+        }
+        else if(emailExists($conn, $newEmail) !== false)
+        {
+            header("location: ../User/editprofile.php?error=emailExist");
+            exit();
+        }
+
+ 
+        $sql = "UPDATE users SET usersEmail ='$newEmail' WHERE usersUid = '$cur'";
+
+        $pwdHashed = $uidExists["usersPwd"];
+        $checkPwd = password_verify($pass, $pwdHashed);
+        if ($checkPwd === false) {
+            header("location: ../User/editprofile.php?error=test2");
+            exit();
+        }
+        else if($checkPwd === true){
+            if ($result = mysqli_query($conn, $sql)) {
+                header("location: ../User/editprofile.php?error=passSuccess4");   
+                exit();
+            }
+        }
+        mysqli_close($conn);
     }
-    */
+
+    function passChange($conn, $cur, $pass, $newPass)
+    { 
+        $uidExists = userExistsLogin($conn, $cur);
+    
+        if ($uidExists === false) {
+            header("location: ../User/editprofile.php?error=usernotin");
+            exit();
+        }
+        $passHashed = $uidExists["usersPwd"];
+        $checkPass = password_verify($passHashed, $newPass);
+        $hashedPwd = password_hash($newPass, PASSWORD_DEFAULT);
+        $sql = "UPDATE users SET usersPwd ='$hashedPwd' WHERE usersUid = '$cur'";
+
+        if ($checkPass === false) {
+            if ($result = mysqli_query($conn, $sql)) {
+                header("location: ../User/editprofile.php?error=passSuccess2");   
+                exit();
+            }
+        }
+        else if ($checkPass === true) {
+            header("location: ../User/editprofile.php?error=test");
+            exit();
+        }
+        mysqli_close($conn);
+    }
+
+
+
+    
+
+
+
 
 
 
