@@ -52,7 +52,7 @@
     {
         if((empty($cur) || empty($new)))
         {
-            //header("location: ../User/editprofile.php?error=users");
+            //header("location: ../editprofile.php?error=users");
             return false;
             exit();
         }
@@ -60,7 +60,7 @@
         $uidExists = userExistsLogin($conn, $cur);
     
         if ($uidExists == false) {
-            header("location: ../User/editprofile.php?error=usernoexists");
+            header("location: ../editprofile.php?error=usernoexists");
             exit();
         }
         
@@ -68,7 +68,7 @@
         $uidExists2 = userExistsLogin($conn, $new);
     
         if ($uidExists2 !== false) {
-            header("location: ../User/editprofile.php?error=userTaken1");
+            header("location: ../editprofile.php?error=userTaken1");
             exit();
         }
 
@@ -77,7 +77,7 @@
         $checkPwd = password_verify($pass, $pwdHashed);
 
         if ($checkPwd === false) {
-                header("location: ../User/editprofile.php?error=test3");
+                header("location: ../editprofile.php?error=test3");
                 exit();
         } 
         else if($checkPwd === true){
@@ -96,7 +96,7 @@
 
         if(!mySqli_stmt_prepare($state, $sql))
         {
-            header("location: ../User/signup.php?error=statefailed2");
+            header("location: ../signup.php?error=statefailed2");
             exit();
         }
         
@@ -122,27 +122,27 @@
         $uidExists = userExistsLogin($conn, $cur);
         if((empty($curEmail) || empty($newEmail)))
         {
-            //header("location: ../User/editprofile.php?error=emails");
+            //header("location: ../editprofile.php?error=emails");
             return false;
             exit();
         }
         else if ($uidExists === false) {
-            header("location: ../User/editprofile.php?error=usernotinEmail");
+            header("location: ../editprofile.php?error=usernotinEmail");
             exit();
         }
         else if(emailInvalid($newEmail) || emailInvalid($curEmail))
         {
-            header("location: ../User/editprofile.php?error=emailNoval");
+            header("location: ../editprofile.php?error=emailNoval");
             exit();
         }
         else if(emailExists($conn, $curEmail) == false)
         {
-            header("location: ../User/editprofile.php?error=emailnoexist");
+            header("location: ../editprofile.php?error=emailnoexist");
             exit();
         }
         else if(emailExists($conn, $newEmail) !== false)
         {
-            header("location: ../User/editprofile.php?error=emailExist");
+            header("location: ../editprofile.php?error=emailExist");
             exit();
         }
 
@@ -152,12 +152,12 @@
         $pwdHashed = $uidExists["usersPwd"];
         $checkPwd = password_verify($pass, $pwdHashed);
         if ($checkPwd === false) {
-            header("location: ../User/editprofile.php?error=test2");
+            header("location: ../editprofile.php?error=test2");
             exit();
         }
         else if($checkPwd === true){
             if ($result = mysqli_query($conn, $sql)) {
-                header("location: ../User/editprofile.php?error=passSuccess4");   
+                header("location: ../editprofile.php?error=passSuccess4");   
                 exit();
             }
         }
@@ -169,7 +169,7 @@
         $uidExists = userExistsLogin($conn, $cur);
     
         if ($uidExists === false) {
-            header("location: ../User/editprofile.php?error=usernotin");
+            header("location: ../editprofile.php?error=usernotin");
             exit();
         }
         $passHashed = $uidExists["usersPwd"];
@@ -179,12 +179,12 @@
 
         if ($checkPass === false) {
             if ($result = mysqli_query($conn, $sql)) {
-                header("location: ../User/editprofile.php?error=passSuccess2");   
+                header("location: ../editprofile.php?error=passSuccess2");   
                 exit();
             }
         }
         else if ($checkPass === true) {
-            header("location: ../User/editprofile.php?error=test");
+            header("location: ../editprofile.php?error=test");
             exit();
         }
         mysqli_close($conn);
@@ -239,7 +239,7 @@
 
         if(!mySqli_stmt_prepare($state, $sql))
         {
-            header("location: ../User/signup.php?error=statefailed1");
+            header("location: ../signup.php?error=statefailed1");
             exit();
         }
         
@@ -266,7 +266,7 @@
 
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-             header("location: ../User/signup.php?error=stmtfailed");
+             header("location: ../signup.php?error=stmtfailed");
             exit();
         }
     
@@ -302,7 +302,7 @@
         $uidExists = userExistsLogin($conn, $username);
     
         if ($uidExists === false) {
-            header("location: ../User/login.php?error=wronguid");
+            header("location: ../login.php?error=wronguid");
             exit();
         }
     
@@ -310,7 +310,7 @@
         $checkPwd = password_verify($pwd, $pwdHashed);
     
         if ($checkPwd === false) {
-            header("location: ../User/login.php?error=wrongpass");
+            header("location: ../login.php?error=wrongpass");
             exit();
         }
         else if ($checkPwd === true) {
@@ -329,7 +329,7 @@
 
         if(!mySqli_stmt_prepare($state, $sql))
         {
-            header("location: ../User/login.php?error=statefailed1");
+            header("location: ../login.php?error=statefailed1");
             exit();
         }
 
