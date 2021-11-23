@@ -276,7 +276,7 @@
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("location: ../User/signup.php?error=none");
+        header("location: ../signup.php?error=none");
         exit();
     }
 
