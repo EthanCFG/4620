@@ -280,9 +280,9 @@
         exit();
     }
 
-    function uploadMedia($conn, $username, $title, $description, $keywords, $category, $path)
+    function uploadMedia($conn, $username, $title, $description, $keywords, $category, $path, $fileType)
     {
-        $sql = "INSERT INTO uploadData (userName, title, descrip, keywords, category, filePath) VALUES (?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO uploadData (userName, title, descrip, keywords, category, filePath, fileType) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql))
@@ -290,7 +290,7 @@
             header("location: ../filemanager.php?error=stmtfailed");
             exit();
         }
-        mysqli_stmt_bind_param($stmt, "ssssss", $username, $title, $description, $keywords, $category, $path);
+        mysqli_stmt_bind_param($stmt, "sssssss", $username, $title, $description, $keywords, $category, $path, $fileType);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
